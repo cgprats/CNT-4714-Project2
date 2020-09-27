@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.Random;
 public class ProjectTwo {
     public static Conveyor[] conveyors;
     public static void main(String[] Args) throws FileNotFoundException {
@@ -22,7 +23,7 @@ public class ProjectTwo {
         RoutingStation[] routingStation = new RoutingStation[configImporter.nextInt()];
         int outputCalculator;
         for (int i = 0; i < routingStation.length; i++) {
-            //Calculate Output
+            //Calculate Output Conveyor
             if (i == 0) {
                 outputCalculator = routingStation.length - 1;
             }
@@ -52,6 +53,7 @@ class RoutingStation extends Thread {
     int _packageGroupCount;
     int _input;
     int _output;
+    Random sleepTime = new Random();
     //Class Constructor
     RoutingStation(int id, int packageGroupCount, int output) {
         _id = id;
@@ -88,6 +90,12 @@ class RoutingStation extends Thread {
                         System.out.println("Routing Station " + _id + ": unlocks input conveyor " + _input);
                         ProjectTwo.conveyors[_output].Unlock();
                         System.out.println("Routing Station " + _id + ": unlocks output conveyor " + _output);
+                        //Sleep Thread for Random Amount of Time after the Package Movement Finishes and Threads are Released
+                        try {
+                            Thread.sleep((long) (sleepTime.nextDouble() * 1000));
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     }
                     //If Output Conveyor Can Not be Locked, Unlock Input Conveyor
                     else {
@@ -113,6 +121,7 @@ class Conveyor {
         return _lockStatus.tryLock();
     }
     public void Unlock() {
+        //Unlocks the Thread
         _lockStatus.unlock();
     }
 }
