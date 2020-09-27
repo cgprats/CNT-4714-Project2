@@ -11,6 +11,7 @@ import java.util.Scanner;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 public class ProjectTwo {
+    public static Conveyor[] conveyors;
     public static void main(String[] Args) throws FileNotFoundException {
         //Import the Configuration File
         //The First Line in the File is the Number of Routing Stations
@@ -31,8 +32,13 @@ public class ProjectTwo {
             else {
                 outputCalculator = i - 1;
             }
-            //Set the Number of Workloads and Output for Each Routing Station
+            //Set the Input, Number of Package Groups, and Output for Each Routing Station
             routingStation[i] = new RoutingStation(i, configImporter.nextInt(), outputCalculator);
+        }
+        //Create the Conveyors Array
+        conveyors = new Conveyor[routingStation.length];
+        for (int i = 0; i < conveyors.length; i++) {
+            conveyors[i] = new Conveyor(i);
         }
         //Start the Threads
         for (int i = 0; i < routingStation.length; i++) {
@@ -40,17 +46,16 @@ public class ProjectTwo {
         }
     }
 }
-//TODO: USE CLASS FOR STATION, CONVEYOR, and DRIVER (DEFINE THREAD POOL AND START STATIONS USING EXECUTIONER), SEE Q&A 1
 //The RoutingStation Class
 class RoutingStation extends Thread {
     int _id;
-    int _workLoadCount;
+    int _packageGroupCount;
     int _input;
     int _output;
     //Class Constructor
-    RoutingStation(int id, int workLoadCount, int output) {
+    RoutingStation(int id, int packageGroupCount, int output) {
         _id = id;
-        _workLoadCount = workLoadCount;
+        _packageGroupCount = packageGroupCount;
         _input = id;
         _output = output;
     }
@@ -59,7 +64,40 @@ class RoutingStation extends Thread {
         //Output Initial Process Information
         System.out.println("Routing Station " + _id + ": input connection is set to conveyor number " + _input);
         System.out.println("Routing Station " + _id + ": output connection is set to conveyor number " + _output);
-        System.out.println("Routing Station " + _id + ": Workload set. Station " + _id + " has a total of " + _workLoadCount + " package groups to move.");
+        System.out.println("Routing Station " + _id + ": Workload set. Station " + _id + " has a total of " + _packageGroupCount + " package groups to move.");
+        //Begin the Workloads
+        boolean packageGroupComplete;
+        for (int i = 0; i < _packageGroupCount; i++) {
+            //Reset the Package Group Status
+            packageGroupComplete = false;
+            //Run a Package Group Until it Succeeds
+            System.out.println("Routing Station " + _id + ": has " + (_packageGroupCount - i) + " package groups left to move.");
+            while (!packageGroupComplete) {
+                //Attempt to Lock Input Conveyor
+                if (ProjectTwo.conveyors[_input].Lock()) {
+                    System.out.println("Routing Station " + _id + ": holds lock on input conveyor " + _input);
+                    //Attempt to Unlock Output Conveyor
+                    if (ProjectTwo.conveyors[_output].Lock()) {
+                        System.out.println("Routing Station " + _id + ": holds lock on output conveyor " + _output);
+                        //Move the Package Group
+                        System.out.println("Routing Station " + _id + ": successfully moves packages into station on input conveyor " + _input);
+                        System.out.println("Routing Station " + _id + ": successfully moves packages out of station on output conveyor " + _output);
+                        packageGroupComplete = true;
+                        //Unlock Conveyors When Package Group Movement is Complete
+                        ProjectTwo.conveyors[_input].Unlock();
+                        System.out.println("Routing Station " + _id + ": unlocks input conveyor " + _input);
+                        ProjectTwo.conveyors[_output].Unlock();
+                        System.out.println("Routing Station " + _id + ": unlocks output conveyor " + _output);
+                    }
+                    //If Output Conveyor Can Not be Locked, Unlock Input Conveyor
+                    else {
+                        ProjectTwo.conveyors[_input].Unlock();
+                        System.out.println("Routing Station " + _id + ": unable to lock output conveyor - releasing lock on input conveyor " + _input);
+                    }
+                }
+            }
+        }
+        System.out.println("* * Station " + _id + ": Workgroup successfully completed. * *");
     }
 }
 //The Conveyor Class
@@ -70,22 +108,11 @@ class Conveyor {
     public Conveyor(int conveyorID) {
         _conveyorId = conveyorID;
     }
-    //Retrieve the Status of the Conveyor
-    public boolean LockStatus() {
-        if (_lockStatus.tryLock()) {
-            return true;
-        }
-        else {
-            return false;
-        }
+    public boolean Lock() {
+        //Attempts to Grab Lock if Available. If It's Not Available, returns false
+        return _lockStatus.tryLock();
     }
-    //Toggle the Conveyor's Lock
-    public void ToggleLock() {
-        if (_lockStatus.tryLock()) {
-            _lockStatus.unlock();
-        }
-        else {
-            _lockStatus.lock();
-        }
+    public void Unlock() {
+        _lockStatus.unlock();
     }
 }
