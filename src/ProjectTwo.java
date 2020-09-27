@@ -8,6 +8,8 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 public class ProjectTwo {
     public static void main(String[] Args) throws FileNotFoundException {
         //Import the Configuration File
@@ -38,6 +40,8 @@ public class ProjectTwo {
         }
     }
 }
+//TODO: USE CLASS FOR STATION, CONVEYOR, and DRIVER (DEFINE THREAD POOL AND START STATIONS USING EXECUTIONER), SEE Q&A 1
+//The RoutingStation Class
 class RoutingStation extends Thread {
     int _id;
     int _workLoadCount;
@@ -56,5 +60,32 @@ class RoutingStation extends Thread {
         System.out.println("Routing Station " + _id + ": input connection is set to conveyor number " + _input);
         System.out.println("Routing Station " + _id + ": output connection is set to conveyor number " + _output);
         System.out.println("Routing Station " + _id + ": Workload set. Station " + _id + " has a total of " + _workLoadCount + " package groups to move.");
+    }
+}
+//The Conveyor Class
+class Conveyor {
+    int _conveyorId;
+    Lock _lockStatus = new ReentrantLock();
+    //Class Constructor
+    public Conveyor(int conveyorID) {
+        _conveyorId = conveyorID;
+    }
+    //Retrieve the Status of the Conveyor
+    public boolean LockStatus() {
+        if (_lockStatus.tryLock()) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    //Toggle the Conveyor's Lock
+    public void ToggleLock() {
+        if (_lockStatus.tryLock()) {
+            _lockStatus.unlock();
+        }
+        else {
+            _lockStatus.lock();
+        }
     }
 }
