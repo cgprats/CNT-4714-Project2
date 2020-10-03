@@ -1,0 +1,106 @@
+Routing Station 0: input connection is set to conveyor number 0
+Routing Station 0: output connection is set to conveyor number 2
+Routing Station 0: Workload set. Station 0 has a total of 2 package groups to move.
+
+Routing Station 1: input connection is set to conveyor number 1
+Routing Station 1: output connection is set to conveyor number 0
+Routing Station 1: Workload set. Station 1 has a total of 3 package groups to move.
+
+Routing Station 2: input connection is set to conveyor number 2
+Routing Station 2: output connection is set to conveyor number 0
+Routing Station 2: Workload set. Station 2 has a total of 4 package groups to move.
+
+Routing Station 0: has 2 package groups left to move.
+Routing Station 1: has 3 package groups left to move.
+Routing Station 2: has 4 package groups left to move.
+Routing Station 0: holds lock on input conveyor 0
+Routing Station 0: unable to lock output conveyor - releasing lock on input conveyor 0
+Routing Station 0: holds lock on input conveyor 0
+Routing Station 0: unable to lock output conveyor - releasing lock on input conveyor 0
+Routing Station 0: holds lock on input conveyor 0
+Routing Station 0: unable to lock output conveyor - releasing lock on input conveyor 0
+Routing Station 1: holds lock on input conveyor 1
+Routing Station 2: holds lock on input conveyor 2
+Routing Station 0: holds lock on input conveyor 0
+Routing Station 2: unable to lock output conveyor - releasing lock on input conveyor 2
+Routing Station 1: unable to lock output conveyor - releasing lock on input conveyor 1
+Routing Station 1: holds lock on input conveyor 1
+Routing Station 1: unable to lock output conveyor - releasing lock on input conveyor 1
+Routing Station 0: holds lock on output conveyor 2
+Routing Station 1: holds lock on input conveyor 1
+Routing Station 1: unable to lock output conveyor - releasing lock on input conveyor 1
+Routing Station 1: holds lock on input conveyor 1
+Routing Station 1: unable to lock output conveyor - releasing lock on input conveyor 1
+Routing Station 1: holds lock on input conveyor 1
+Routing Station 0: successfully moves packages into station on input conveyor 0
+Routing Station 1: unable to lock output conveyor - releasing lock on input conveyor 1
+Routing Station 1: holds lock on input conveyor 1
+Routing Station 1: unable to lock output conveyor - releasing lock on input conveyor 1
+Routing Station 1: holds lock on input conveyor 1
+Routing Station 1: unable to lock output conveyor - releasing lock on input conveyor 1
+Routing Station 0: successfully moves packages out of station on output conveyor 2
+Routing Station 1: holds lock on input conveyor 1
+Routing Station 1: holds lock on output conveyor 0
+Routing Station 1: successfully moves packages into station on input conveyor 1
+Routing Station 1: successfully moves packages out of station on output conveyor 0
+Routing Station 0: unlocks input conveyor 0
+Routing Station 2: holds lock on input conveyor 2
+Routing Station 2: unable to lock output conveyor - releasing lock on input conveyor 2
+Routing Station 2: holds lock on input conveyor 2
+Routing Station 2: unable to lock output conveyor - releasing lock on input conveyor 2
+Routing Station 0: unlocks output conveyor 2
+Routing Station 2: holds lock on input conveyor 2
+Routing Station 1: unlocks input conveyor 1
+Routing Station 2: unable to lock output conveyor - releasing lock on input conveyor 2
+Routing Station 1: unlocks output conveyor 0
+Routing Station 2: holds lock on input conveyor 2
+Routing Station 2: holds lock on output conveyor 0
+Routing Station 2: successfully moves packages into station on input conveyor 2
+Routing Station 2: successfully moves packages out of station on output conveyor 0
+Routing Station 2: unlocks input conveyor 2
+Routing Station 2: unlocks output conveyor 0
+Routing Station 2: has 3 package groups left to move.
+Routing Station 2: holds lock on input conveyor 2
+Routing Station 2: holds lock on output conveyor 0
+Routing Station 2: successfully moves packages into station on input conveyor 2
+Routing Station 2: successfully moves packages out of station on output conveyor 0
+Routing Station 2: unlocks input conveyor 2
+Routing Station 2: unlocks output conveyor 0
+Routing Station 0: has 1 package groups left to move.
+Routing Station 0: holds lock on input conveyor 0
+Routing Station 0: holds lock on output conveyor 2
+Routing Station 0: successfully moves packages into station on input conveyor 0
+Routing Station 0: successfully moves packages out of station on output conveyor 2
+Routing Station 0: unlocks input conveyor 0
+Routing Station 0: unlocks output conveyor 2
+Routing Station 2: has 2 package groups left to move.
+Routing Station 2: holds lock on input conveyor 2
+Routing Station 2: holds lock on output conveyor 0
+Routing Station 2: successfully moves packages into station on input conveyor 2
+Routing Station 2: successfully moves packages out of station on output conveyor 0
+Routing Station 2: unlocks input conveyor 2
+Routing Station 2: unlocks output conveyor 0
+Routing Station 1: has 2 package groups left to move.
+Routing Station 1: holds lock on input conveyor 1
+Routing Station 1: holds lock on output conveyor 0
+Routing Station 1: successfully moves packages into station on input conveyor 1
+Routing Station 1: successfully moves packages out of station on output conveyor 0
+Routing Station 1: unlocks input conveyor 1
+Routing Station 1: unlocks output conveyor 0
+* * Station 0: Workgroup successfully completed. * *
+Routing Station 2: has 1 package groups left to move.
+Routing Station 2: holds lock on input conveyor 2
+Routing Station 2: holds lock on output conveyor 0
+Routing Station 2: successfully moves packages into station on input conveyor 2
+Routing Station 2: successfully moves packages out of station on output conveyor 0
+Routing Station 2: unlocks input conveyor 2
+Routing Station 2: unlocks output conveyor 0
+Routing Station 1: has 1 package groups left to move.
+Routing Station 1: holds lock on input conveyor 1
+Routing Station 1: holds lock on output conveyor 0
+Routing Station 1: successfully moves packages into station on input conveyor 1
+Routing Station 1: successfully moves packages out of station on output conveyor 0
+Routing Station 1: unlocks input conveyor 1
+Routing Station 1: unlocks output conveyor 0
+* * Station 2: Workgroup successfully completed. * *
+* * Station 1: Workgroup successfully completed. * *
