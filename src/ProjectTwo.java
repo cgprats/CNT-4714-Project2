@@ -142,6 +142,7 @@ class Conveyor {
         _lockStatus.unlock();
     }
     public boolean OwnedByCurrent() {
+        //Return the Ownership of the Accessing Thread on the Lock
         return _lockStatus.isHeldByCurrentThread();
     }
 }
